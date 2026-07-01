@@ -1,0 +1,15 @@
+{
+  "name": "pai-edil-proxy",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Proxy seguro entre el explorador PAI EDIL y la API de Claude (oculta la clave de API).",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "secret": "wrangler secret put ANTHROPIC_API_KEY",
+    "secret:access": "wrangler secret put ACCESS_KEY"
+  },
+  "devDependencies": {
+    "wrangler": "^3.90.0"
+  }
+}

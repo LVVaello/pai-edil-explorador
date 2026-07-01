@@ -1,0 +1,17 @@
+name = "pai-edil-proxy"
+main = "src/index.js"
+compatibility_date = "2024-09-23"
+
+# Variable pública (no secreta): dominio desde el que se permite llamar a este Worker.
+# Sustitúyela por tu dominio real de GitHub Pages, p.ej. "https://tu-usuario.github.io"
+# Puedes dejar "*" mientras pruebas, pero se recomienda restringirlo antes de publicar.
+[vars]
+ALLOWED_ORIGIN = "*"
+
+# Ninguna clave se define aquí. Se añaden como secretos con:
+#   wrangler secret put ANTHROPIC_API_KEY
+#   wrangler secret put ACCESS_KEY
+# o desde el panel de Cloudflare (Settings > Variables > Encrypt).
+#
+# ACCESS_KEY es la clave que compartirás con tu equipo (no es tu clave de
+# Anthropic). Puede ser cualquier frase o código que decidas, p.ej. "edil2027".
