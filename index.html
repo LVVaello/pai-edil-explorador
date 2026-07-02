@@ -562,6 +562,10 @@
       <button id="gov-exc" onclick="setGov('excepcional')">Modelo excepcional (AUF-Ayto.)</button>
     </div>
     <p class="gov-note" id="gov-note">Modelo general: aplicable a municipios y a la mayoría de AUF. La Unidad de Gestión selecciona operaciones; las Unidades Ejecutoras las presentan y ejecutan.</p>
+    <div class="issue-card issue-cau" style="margin-top:12px;">
+      <span class="issue-num">⚠</span>
+      <span>El modelo excepcional NO se deduce de la estructura de la AUF (tener o no una mancomunidad, diputación, etc.). Es una <strong>lista cerrada de nueve AUF concretas</strong> designadas por la SGDU (Sesión Técnica SGDU, XII Pleno RIU). Un "municipio de cabecera" tampoco implica automáticamente el modelo excepcional — es solo un criterio poblacional para constituirse como AUF. Si no sabes si tu AUF está entre esas nueve, debes confirmarlo con el CAU o el Organismo Intermedio.</span>
+    </div>
   </div>
 
   <div class="section-divider"></div>
@@ -806,7 +810,8 @@ const CHRONO_AUF = [
 const GLOSARIO = [
 {term:"PAI", def:"Plan de Actuación Integrado — el proyecto aprobado que la Entidad Local ejecuta con senda financiera FEDER."},
 {term:"EDIL", def:"Nombre del Plan/convocatoria (\"Plan EDIL\") en el marco del Desarrollo Urbano Sostenible del Programa Plurirregional de España."},
-{term:"AUF", def:"Área Urbana Funcional: agrupación de varios municipios que comparten un mismo PAI."},
+{term:"AUF", def:"Área Urbana Funcional: agrupación de varios municipios con vínculos funcionales que sumen más de 20.000 habitantes, entre los que haya un municipio de cabecera de al menos 10.000 habitantes, con predominio del empleo en el sector servicios [Base: Acord_Associació_2021_2027.pdf]."},
+{term:"Municipio de cabecera", def:"Municipio de mayor tamaño dentro de una AUF, con un mínimo de 10.000 habitantes [Base: Acord_Associació_2021_2027.pdf / Programa_POPE.pdf]. Es un criterio poblacional de elegibilidad y de reparto de fondos — NO determina por sí solo el modelo de gobernanza (general o excepcional) aplicable."},
 {term:"POPE", def:"Programa Plurirregional de España 2021-2027, cofinanciado por el FEDER."},
 {term:"RDC", def:"Reglamento de Disposiciones Comunes — Reglamento (UE) 2021/1060, marco normativo general de los fondos europeos 2021-2027."},
 {term:"Autoridad de Gestión", def:"Subdirección General de Gestión del FEDER; ejerce las funciones de los artículos 72-75 del RDC."},
@@ -833,7 +838,7 @@ const GLOSARIO = [
 const CUESTIONES_CAU = [
   "¿Qué debe entenderse por \"miembros CARF\", campo exigido en la DFyP? No está definido ni desarrollado en ningún documento del proyecto.",
   "¿Cuál es el orden correcto entre la firma de la DFyP/Manual de Procedimientos por el responsable de la Unidad de Gestión (Bloque 0) y la \"Constitución de la Unidad de Gestión\" (paso 1.1, Bloque 1)? ¿Existe un modelo o plantilla oficial para ese acto de constitución, como sí lo hay para la DFyP y el MP?",
-  "¿Con qué criterio se distingue, más allá de \"AUF liderada por Ayuntamiento\", cuándo una Área Urbana Funcional debe aplicar el modelo de gobernanza general y cuándo el excepcional?"
+  "¿Cuáles son las nueve áreas urbanas funcionales designadas para el modelo excepcional de gobernanza, y dónde consta oficialmente esa designación (Resolución, Acuerdo de Atribución de Funciones u otro documento)? La SGDU confirmó en sesión técnica que se trata de una lista cerrada de nueve beneficiarios, pero no consta el listado ni su publicación oficial en la documentación disponible."
 ];
 
 const CUESTIONES_LOCAL = [
@@ -999,7 +1004,7 @@ function setGov(mode){
   document.getElementById("gov-exc").classList.toggle("active", mode==="excepcional");
   document.getElementById("gov-note").textContent = mode==="general"
     ? "Modelo general: aplicable a municipios y a la mayoría de AUF. La Unidad de Gestión selecciona operaciones; las Unidades Ejecutoras las presentan y ejecutan."
-    : "Modelo excepcional: solo AUF lideradas por un Ayuntamiento. El Organismo Intermedio (SGDU) selecciona y verifica directamente; el Ayuntamiento líder actúa como beneficiario.";
+    : "Modelo excepcional: lista cerrada de nueve AUF lideradas por un Ayuntamiento, designadas por la SGDU (no deducible de la estructura de la AUF). El Organismo Intermedio (SGDU) selecciona y verifica directamente; el Ayuntamiento líder actúa como beneficiario.";
   const label = document.getElementById("chat-gov-label");
   if(label) label.textContent = mode==="general" ? "modelo general" : "modelo excepcional (AUF-Ayto.)";
   renderBlocks();
