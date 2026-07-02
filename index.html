@@ -345,6 +345,9 @@
   .msg.bot{align-self:flex-start;background:#F1F0EA;color:var(--ink);border-bottom-left-radius:2px;}
   .msg.bot.pending{color:var(--ink-soft);font-style:italic;}
   .msg.bot.err{background:var(--coral-bg);color:var(--coral);}
+  .msg .msg-h{display:block;font-weight:700;color:var(--navy);margin-top:6px;}
+  .msg .msg-h:first-child{margin-top:0;}
+  .msg .msg-li{display:block;margin-left:4px;}
   .chat-empty{color:var(--ink-soft);font-size:13px;padding:8px 4px;}
   .chat-input-row{
     display:flex;
@@ -489,8 +492,8 @@
 <div id="app-content">
 <header class="top">
   <div class="wrap">
-    <p class="eyebrow">Un entorno desarrollado por Crea360 SL</p>
-    <h1>Plataforma de apoyo operativo para la ejecución de un PAI EDIL</h1>
+    <p class="eyebrow">PAI EDIL · Documento de apoyo operativo</p>
+    <h1>Explorador del flujo de ejecución</h1>
     <p class="sub">Pregunta en lenguaje natural al asistente, o usa la búsqueda rápida por palabra clave. Incluye la secuencia cronológica, los 5 bloques del proceso, procesos transversales, glosario y cuestiones pendientes.</p>
     <div class="search-box">
       <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
@@ -1072,8 +1075,8 @@ document.getElementById("logout-btn").addEventListener("click", lockApp);
 
 // PASO OBLIGATORIO tras desplegar tu Worker (ver README.md):
 // sustituye la cadena vacía por la URL de tu Worker, ej:
-// const API_ENDPOINT = "https://pai-edil-proxy.creacalendar360.workers.dev/";
-const API_ENDPOINT = "https://pai-edil-proxy.creacalendar360.workers.dev/";
+// const API_ENDPOINT = "https://pai-edil-proxy.tu-usuario.workers.dev";
+const API_ENDPOINT = "";
 
 function buildContext(){
   const lines = [];
@@ -1122,7 +1125,7 @@ function buildContext(){
 }
 
 const SYSTEM_CONTEXT = buildContext();
-const SYSTEM_INSTRUCTIONS = "Eres un asistente que responde EXCLUSIVAMENTE con base en el contenido documentado a continuación sobre la ejecución de un PAI EDIL. No debes usar conocimiento externo ni suponer nada que no esté en este contenido. Si la pregunta no puede responderse con lo aportado, dilo expresamente en vez de inventar una respuesta, y sugiere consultarlo con el CAU (910 001 142 / soporte@soportesgffee.zendesk.com). Responde en español, de forma clara y operativa, citando el bloque, proceso o término relevante cuando aplique.\n\nCONTENIDO DOCUMENTADO:\n" + SYSTEM_CONTEXT;
+const SYSTEM_INSTRUCTIONS = "Eres un asistente que responde EXCLUSIVAMENTE con base en el contenido documentado a continuación sobre la ejecución de un PAI EDIL. No debes usar conocimiento externo ni suponer nada que no esté en este contenido. Si la pregunta no puede responderse con lo aportado, dilo expresamente en vez de inventar una respuesta, y sugiere consultarlo con el CAU (910 001 142 / soporte@soportesgffee.zendesk.com). Responde en español, de forma clara y operativa, citando el bloque, proceso o término relevante cuando aplique.\n\nFORMATO DE RESPUESTA: este chat no interpreta Markdown, así que NO uses asteriscos para negrita (**texto**), NO uses almohadillas para títulos (## Título), NO uses guiones ni asteriscos como viñetas de lista. Escribe en texto plano. Para dar énfasis, usa mayúsculas puntuales o dos puntos. Para listas, usa numeración simple con salto de línea (1. ... / 2. ...). Para separar apartados, usa una línea en blanco y, si hace falta un título de apartado, escríbelo seguido de dos puntos en su propia línea, sin símbolos delante.\n\nCONTENIDO DOCUMENTADO:\n" + SYSTEM_CONTEXT;
 
 let chatHistory = [];
 let chatBusy = false;
@@ -1147,6 +1150,25 @@ function checkChatConfig(){
   }
   setChatStatus("ready", "Conectado");
   return true;
+}
+
+function escapeHtml(s){
+  return s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+}
+
+// Intérprete de markdown mínimo, de respaldo por si el modelo usa ** o ##
+// pese a las instrucciones. Convierte solo negrita, títulos y viñetas;
+// todo lo demás se muestra como texto plano y escapado.
+function mdLite(raw){
+  const escaped = escapeHtml(raw);
+  const lines = escaped.split("\n").map(line=>{
+    const headingMatch = line.match(/^#{1,4}\s*(.+)$/);
+    if(headingMatch) return '<span class="msg-h">'+headingMatch[1]+'</span>';
+    const bulletMatch = line.match(/^[-*]\s+(.+)$/);
+    if(bulletMatch) return '<span class="msg-li">• '+bulletMatch[1]+'</span>';
+    return line;
+  });
+  return lines.join("\n").replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>");
 }
 
 function appendMsg(role, text, extraClass){
@@ -1196,7 +1218,7 @@ async function sendChat(){
     }
     const data = await res.json();
     const reply = data.reply || "(respuesta vacía)";
-    pending.textContent = reply;
+    pending.innerHTML = mdLite(reply);
     pending.classList.remove("pending");
     chatHistory.push({ role: "assistant", content: reply });
   }catch(err){
