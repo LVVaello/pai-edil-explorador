@@ -8,6 +8,9 @@
   :root{
     --navy:#1F3864;
     --blue:#2E5A8C;
+    --green:#538135;
+    --green-bg:#EAF3E4;
+    --green-dark:#385723;
     --teal:#0F6E56;
     --teal-bg:#E1F5EE;
     --coral:#993C1D;
@@ -28,8 +31,9 @@
     margin:0;
     background:var(--paper);
     color:var(--ink);
-    font-family:"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
-    line-height:1.5;
+    font-family:"Calibri","Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+    font-weight:400;
+    line-height:1.55;
   }
   a{color:var(--blue);}
   :focus-visible{outline:3px solid var(--focus); outline-offset:2px;}
@@ -43,17 +47,17 @@
   header.top .wrap{padding-top:0;padding-bottom:0;}
   .eyebrow{
     text-transform:uppercase;
-    letter-spacing:.08em;
-    font-size:12px;
+    letter-spacing:.1em;
+    font-size:11.5px;
     color:#AFC2DE;
     font-weight:600;
     margin:0 0 8px;
   }
   h1{
-    font-size:26px;
+    font-size:27px;
     margin:0 0 8px;
-    font-weight:700;
-    letter-spacing:-.01em;
+    font-weight:600;
+    letter-spacing:-.005em;
   }
   .sub{
     color:#D7E1F0;
@@ -107,38 +111,64 @@
   .result-chip:hover{background:rgba(255,255,255,.18);}
   .result-chip b{color:#FFD9A0;}
 
-  /* Governance toggle */
+  /* Governance toggle — paso previo destacado */
   .gov-card{
-    background:var(--card);
-    border:1px solid var(--line);
+    background:var(--green-bg);
+    border:1px solid #C9DCB9;
     border-radius:var(--radius);
-    padding:18px 20px;
+    padding:22px 24px;
     margin-top:-24px;
     box-shadow:0 6px 20px rgba(31,56,100,.08);
   }
-  .gov-card h2{font-size:15px;margin:0 0 4px;color:var(--navy);}
-  .gov-card p{margin:0 0 12px;font-size:13px;color:var(--ink-soft);}
-  .gov-switch{display:flex;border:1px solid var(--line);border-radius:999px;overflow:hidden;width:fit-content;}
+  .gov-kicker{
+    text-transform:uppercase;
+    letter-spacing:.08em;
+    font-size:11px;
+    font-weight:600;
+    color:var(--green-dark);
+    margin:0 0 6px;
+  }
+  .gov-card h2{font-size:19px;font-weight:600;margin:0 0 6px;color:var(--navy);}
+  .gov-card p{margin:0 0 14px;font-size:13.5px;color:var(--ink-soft);max-width:640px;}
+  .gov-switch{display:flex;border:1px solid #C9DCB9;background:#fff;border-radius:999px;overflow:hidden;width:fit-content;}
   .gov-switch button{
     border:none;
     background:transparent;
-    padding:9px 18px;
-    font-size:13px;
+    padding:10px 20px;
+    font-size:13.5px;
     font-weight:600;
     cursor:pointer;
     color:var(--ink-soft);
   }
-  .gov-switch button.active{background:var(--navy);color:#fff;}
-  .gov-note{font-size:12px;color:var(--ink-soft);margin-top:10px;}
+  .gov-switch button.active{background:var(--green);color:#fff;}
+  .gov-note{font-size:12.5px;color:var(--green-dark);margin-top:12px;}
+
+  .section-divider{
+    height:1px;
+    background:var(--line);
+    margin:40px 0;
+  }
 
   /* Stepper */
-  section{margin-top:40px;}
+  section{margin-top:44px;}
   h2.section-title{
-    font-size:19px;
+    font-size:21px;
+    font-weight:600;
     color:var(--navy);
-    margin:0 0 4px;
+    margin:0 0 6px;
+    letter-spacing:-.005em;
   }
-  .section-desc{color:var(--ink-soft);font-size:13.5px;margin:0 0 18px;}
+  .section-desc{color:var(--ink-soft);font-size:13.5px;margin:0 0 20px;max-width:680px;}
+  .subsection-title{
+    font-size:15px;
+    font-weight:600;
+    margin:26px 0 4px;
+    padding-left:12px;
+    border-left:3px solid var(--line);
+  }
+  .subsection-title.subsection-cau{border-left-color:var(--amber);color:var(--amber);}
+  .subsection-title.subsection-local{border-left-color:var(--blue);color:var(--blue);}
+  .subsection-desc{color:var(--ink-soft);font-size:13px;margin:0 0 10px;}
 
   .stepper{display:flex;flex-direction:column;gap:10px;}
   .step-pill{
@@ -161,9 +191,9 @@
     background:var(--navy);
     color:#fff;
     display:flex;align-items:center;justify-content:center;
-    font-weight:700;font-size:14px;
+    font-weight:600;font-size:14px;
   }
-  .step-pill .txt strong{display:block;font-size:14.5px;color:var(--ink);}
+  .step-pill .txt strong{display:block;font-size:14.5px;font-weight:600;color:var(--ink);}
   .step-pill .txt span{display:block;font-size:12.5px;color:var(--ink-soft);margin-top:2px;}
   .step-pill .chev{margin-left:auto;flex:0 0 auto;color:var(--ink-soft);transition:transform .15s;}
   .step-pill[aria-expanded="true"] .chev{transform:rotate(90deg);}
@@ -244,32 +274,41 @@
   tbody tr:nth-child(even){background:#F7F6F1;}
   .legend{font-size:12px;color:var(--ink-soft);margin-top:10px;}
 
-  /* Chrono */
-  .chrono-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;}
+  /* Chrono — timeline */
+  .chrono-grid{display:grid;grid-template-columns:1fr 1fr;gap:32px;}
   @media (max-width:700px){.chrono-grid{grid-template-columns:1fr;}}
-  .chrono-col h3{font-size:14.5px;color:var(--navy);margin:0 0 10px;}
-  .chrono-list{margin:0;padding:0;list-style:none;counter-reset:step;}
-  .chrono-list li{
-    counter-increment:step;
-    display:flex;
-    gap:10px;
-    padding:7px 0;
-    font-size:13px;
-    border-bottom:1px dashed var(--line);
+  .chrono-col h3{font-size:15px;font-weight:600;color:var(--navy);margin:0 0 14px;}
+  .timeline{
+    margin:0 0 0 10px;
+    padding:0 0 0 22px;
+    list-style:none;
+    counter-reset:step;
+    border-left:2px solid #CBD8C2;
+    position:relative;
   }
-  .chrono-list li::before{
+  .timeline li{
+    counter-increment:step;
+    position:relative;
+    padding:0 0 20px 6px;
+    font-size:13px;
+    color:var(--ink);
+  }
+  .timeline li:last-child{padding-bottom:0;}
+  .timeline li::before{
     content:counter(step);
-    flex:0 0 auto;
+    position:absolute;
+    left:-31px;
+    top:-1px;
     width:20px;height:20px;
     border-radius:50%;
-    background:var(--navy);
-    color:#fff;
+    background:#fff;
+    border:2px solid var(--green);
+    color:var(--green-dark);
     font-size:10.5px;
-    font-weight:700;
+    font-weight:600;
     display:flex;align-items:center;justify-content:center;
-    margin-top:1px;
   }
-  .chrono-note{font-size:12px;color:var(--ink-soft);font-style:italic;margin-top:10px;}
+  .chrono-note{font-size:12px;color:var(--ink-soft);font-style:italic;margin-top:12px;}
 
   /* Glossary */
   .gloss-row{display:grid;grid-template-columns:150px 1fr;gap:14px;padding:10px 0;border-bottom:1px solid var(--line);font-size:13px;}
@@ -279,7 +318,7 @@
   .flag{
     display:inline-block;
     font-size:10px;
-    font-weight:700;
+    font-weight:600;
     text-transform:uppercase;
     letter-spacing:.03em;
     background:var(--coral-bg);
@@ -301,16 +340,23 @@
     display:flex;
     gap:10px;
   }
-  .issue-num{flex:0 0 auto;font-weight:700;color:var(--amber);}
+  .issue-card.issue-local{
+    background:#EAF1F8;
+    border-left-color:var(--blue);
+    color:#1c3a5e;
+  }
+  .issue-card.issue-local .issue-num{color:var(--blue);}
+  .issue-num{flex:0 0 auto;font-weight:600;color:var(--amber);}
   .issues-intro{
     background:#fff;
     border:1px solid var(--line);
     border-radius:var(--radius);
-    padding:12px 14px;
-    font-size:13px;
+    padding:10px 14px;
+    font-size:12.5px;
     color:var(--ink-soft);
-    margin-bottom:16px;
+    margin-bottom:12px;
   }
+  .issues-intro-local{border-color:#BFD4E8;}
 
   /* Chat */
   .chat-card{
@@ -345,7 +391,7 @@
   .msg.bot{align-self:flex-start;background:#F1F0EA;color:var(--ink);border-bottom-left-radius:2px;}
   .msg.bot.pending{color:var(--ink-soft);font-style:italic;}
   .msg.bot.err{background:var(--coral-bg);color:var(--coral);}
-  .msg .msg-h{display:block;font-weight:700;color:var(--navy);margin-top:6px;}
+  .msg .msg-h{display:block;font-weight:600;color:var(--navy);margin-top:6px;}
   .msg .msg-h:first-child{margin-top:0;}
   .msg .msg-li{display:block;margin-left:4px;}
   .chat-empty{color:var(--ink-soft);font-size:13px;padding:8px 4px;}
@@ -507,9 +553,22 @@
 
 <div class="wrap">
 
+  <div class="gov-card">
+    <p class="gov-kicker">Paso previo — obligatorio antes de continuar</p>
+    <h2>Selecciona el modelo de gobernanza</h2>
+    <p>Todo el contenido siguiente (flujo, chat, responsables) se ajusta al modelo que elijas aquí. Si no sabes cuál aplica a tu caso, revisa el apartado 2 del documento de flujo o consúltalo con la Entidad Local antes de continuar.</p>
+    <div class="gov-switch" role="group" aria-label="Modelo de gobernanza">
+      <button id="gov-general" class="active" onclick="setGov('general')">Modelo general</button>
+      <button id="gov-exc" onclick="setGov('excepcional')">Modelo excepcional (AUF-Ayto.)</button>
+    </div>
+    <p class="gov-note" id="gov-note">Modelo general: aplicable a municipios y a la mayoría de AUF. La Unidad de Gestión selecciona operaciones; las Unidades Ejecutoras las presentan y ejecutan.</p>
+  </div>
+
+  <div class="section-divider"></div>
+
   <section id="sec-chat">
     <h2 class="section-title">Pregunta al asistente</h2>
-    <p class="section-desc">Responde en lenguaje natural usando como única base el contenido de esta página (flujo, procesos transversales, glosario y cuestiones pendientes). Si algo no está documentado, te lo dirá en vez de inventarlo.</p>
+    <p class="section-desc">Responde en lenguaje natural usando como única base el contenido de esta página. Tiene en cuenta el modelo de gobernanza que has seleccionado arriba (<span id="chat-gov-label">modelo general</span>). Si algo no está documentado, te lo dirá en vez de inventarlo.</p>
     <div class="chat-card">
       <div class="chat-status"><span class="chat-dot" id="chat-dot"></span><span id="chat-status-text">Comprobando conexión…</span></div>
       <div class="chat-log" id="chat-log">
@@ -522,15 +581,7 @@
     </div>
   </section>
 
-  <div class="gov-card">
-    <h2>Modelo de gobernanza</h2>
-    <p>Cambia el modelo para ver cómo varía el responsable en los Bloques 2 y 4.</p>
-    <div class="gov-switch" role="group" aria-label="Modelo de gobernanza">
-      <button id="gov-general" class="active" onclick="setGov('general')">Modelo general</button>
-      <button id="gov-exc" onclick="setGov('excepcional')">Modelo excepcional (AUF-Ayto.)</button>
-    </div>
-    <p class="gov-note" id="gov-note">Modelo general: aplicable a municipios y a la mayoría de AUF. La Unidad de Gestión selecciona operaciones; las Unidades Ejecutoras las presentan y ejecutan.</p>
-  </div>
+  <div class="section-divider"></div>
 
   <section id="sec-chrono">
     <h2 class="section-title">Secuencia cronológica resumida</h2>
@@ -538,12 +589,12 @@
     <div class="chrono-grid">
       <div class="chrono-col">
         <h3>Municipio único</h3>
-        <ol class="chrono-list" id="chrono-municipio"></ol>
+        <ol class="timeline" id="chrono-municipio"></ol>
         <p class="chrono-note">Los pasos 7 a 21 se repiten por cada operación del PAI.</p>
       </div>
       <div class="chrono-col">
         <h3>Área Urbana Funcional (AUF)</h3>
-        <ol class="chrono-list" id="chrono-auf"></ol>
+        <ol class="timeline" id="chrono-auf"></ol>
         <p class="chrono-note">Igual que un municipio único, con la decisión de modelo de gobernanza justo después del paso 1.</p>
       </div>
     </div>
@@ -577,10 +628,18 @@
   </section>
 
   <section id="sec-cuestiones">
-    <h2 class="section-title">Cuestiones pendientes / discrepancias</h2>
-    <p class="section-desc">Todo lo que la documentación disponible no resuelve de forma expresa. Se recomienda trasladarlo al CAU antes de operar con seguridad en los puntos afectados.</p>
+    <h2 class="section-title">Preguntas pendientes de resolver</h2>
+    <p class="section-desc">Todo lo que la documentación disponible no resuelve de forma expresa, agrupado según a quién hay que preguntárselo.</p>
+
+    <h3 class="subsection-title subsection-cau">Para trasladar al CAU</h3>
+    <p class="subsection-desc">Vacíos o ambigüedades de la propia normativa/documentación EDIL, iguales para cualquier Entidad Local. No dependen de vuestro caso concreto.</p>
     <div class="issues-intro">Centro de Atención a Usuarios (CAU): 910 001 142 · soporte@soportesgffee.zendesk.com</div>
-    <div id="cuestiones-container"></div>
+    <div id="cuestiones-cau-container"></div>
+
+    <h3 class="subsection-title subsection-local">Para preguntar a la Entidad Local</h3>
+    <p class="subsection-desc">Antes de empezar a asistir, conviene confirmar en qué punto está realmente el Ayuntamiento o la AUF y qué documentación propia ha generado ya.</p>
+    <div class="issues-intro issues-intro-local">Interlocutor: responsable de la Unidad de Gestión o persona de contacto designada por la Entidad Local</div>
+    <div id="cuestiones-local-container"></div>
   </section>
 
   <section id="sec-referencias">
@@ -771,16 +830,23 @@ const GLOSARIO = [
 {term:"Indicador RCR/RCO", def:"Indicadores comunes de resultado (RCR) y de realización/productividad (RCO) del Reglamento FEDER."}
 ];
 
-const CUESTIONES = [
-"Modelo de gobernanza aplicable a la AUF concreta objeto de gestión: general (con Unidad de Gestión propia) o excepcional (selección y verificación directa por la SGDU, con el Ayuntamiento líder como beneficiario). No consta en la documentación disponible más criterio de deslinde que \"AUF liderada por Ayuntamiento\". Afecta a los Bloques 2 y 4.",
-"Orden real entre la firma de la DFyP y el Manual de Procedimientos por el \"responsable de la Unidad de Gestión\" (Bloque 0) y la \"Constitución de la Unidad de Gestión\" (paso 1.1, Bloque 1): la documentación no explica esta aparente inversión de secuencia ni aporta un modelo de acto de constitución, a diferencia de la DFyP y el MP.",
-"Significado del acrónimo \"CARF\" (campo \"miembros CARF\" exigido en la DFyP): no está definido ni desarrollado en ningún documento del proyecto.",
-"Composición real de personas de la Unidad de Gestión y de las distintas Unidades Ejecutoras (perfil profesional, organigrama, unidades administrativas): no consta un modelo de referencia; debe recogerse en la DFyP propia de cada entidad.",
-"Estado actual de la Entidad Local dentro de los Bloques 0 y 1: si ya está firmado el Acuerdo de Atribución de Funciones y constituida la Unidad de Gestión, para situar con precisión el punto de partida real del flujo.",
-"Procedimiento interno de contratación pública (Bloque 3): no está detallado en la documentación EDIL cargada; el reparto exacto de tareas entre Contratación, Secretaría e Intervención no consta y depende de la organización interna de cada Entidad Local.",
-"Calendario interno de firmas y plazos de tramitación entre áreas municipales (Secretaría, Intervención, Alcaldía): no consta en la documentación EDIL; depende de la organización interna de cada Entidad Local.",
-"Persona o unidad concreta designada como responsable de comunicación: no consta un nombramiento por defecto; debe formalizarse en cada Entidad Local."
+const CUESTIONES_CAU = [
+  "¿Qué debe entenderse por \"miembros CARF\", campo exigido en la DFyP? No está definido ni desarrollado en ningún documento del proyecto.",
+  "¿Cuál es el orden correcto entre la firma de la DFyP/Manual de Procedimientos por el responsable de la Unidad de Gestión (Bloque 0) y la \"Constitución de la Unidad de Gestión\" (paso 1.1, Bloque 1)? ¿Existe un modelo o plantilla oficial para ese acto de constitución, como sí lo hay para la DFyP y el MP?",
+  "¿Con qué criterio se distingue, más allá de \"AUF liderada por Ayuntamiento\", cuándo una Área Urbana Funcional debe aplicar el modelo de gobernanza general y cuándo el excepcional?"
 ];
+
+const CUESTIONES_LOCAL = [
+  "¿Está ya firmado el Acuerdo de Atribución de Funciones? ¿Está constituida formalmente la Unidad de Gestión? (Para situar el punto de partida real dentro del flujo.)",
+  "Si sois una Área Urbana Funcional: ¿qué modelo de gobernanza aplicáis — general (con Unidad de Gestión propia) o excepcional (AUF liderada por un Ayuntamiento)? ¿Quién lidera la AUF?",
+  "¿Quién compone actualmente la Unidad de Gestión y las distintas Unidades Ejecutoras (personas, cargos, unidades administrativas)? ¿Está ya recogido en una DFyP?",
+  "¿Cuál es vuestro procedimiento interno de contratación pública habitual (normativa aplicable, umbrales, tramitación ordinaria/urgente, reparto entre Contratación, Secretaría e Intervención)?",
+  "¿Cuál es el calendario interno de firmas entre Secretaría, Intervención y Alcaldía para este tipo de expedientes?",
+  "¿Habéis designado ya un responsable de comunicación? ¿Quién es la persona o unidad de contacto?"
+];
+
+// Se mantiene un listado plano combinado para el contexto del chat y la búsqueda.
+const CUESTIONES = [...CUESTIONES_CAU, ...CUESTIONES_LOCAL];
 
 // ============================================================
 // DOCUMENTACIÓN DE REFERENCIA — añade aquí nuevos documentos
@@ -892,9 +958,13 @@ function renderGlosario(){
 }
 
 function renderCuestiones(){
-  const c = document.getElementById("cuestiones-container");
-  c.innerHTML = CUESTIONES.map((t,i)=>
-    '<div class="issue-card" id="issue-'+i+'"><span class="issue-num">'+(i+1)+'.</span><span>'+t+'</span></div>'
+  const cau = document.getElementById("cuestiones-cau-container");
+  cau.innerHTML = CUESTIONES_CAU.map((t,i)=>
+    '<div class="issue-card issue-cau" id="issue-cau-'+i+'"><span class="issue-num">'+(i+1)+'.</span><span>'+t+'</span></div>'
+  ).join("");
+  const local = document.getElementById("cuestiones-local-container");
+  local.innerHTML = CUESTIONES_LOCAL.map((t,i)=>
+    '<div class="issue-card issue-local" id="issue-local-'+i+'"><span class="issue-num">'+(i+1)+'.</span><span>'+t+'</span></div>'
   ).join("");
 }
 
@@ -930,6 +1000,8 @@ function setGov(mode){
   document.getElementById("gov-note").textContent = mode==="general"
     ? "Modelo general: aplicable a municipios y a la mayoría de AUF. La Unidad de Gestión selecciona operaciones; las Unidades Ejecutoras las presentan y ejecutan."
     : "Modelo excepcional: solo AUF lideradas por un Ayuntamiento. El Organismo Intermedio (SGDU) selecciona y verifica directamente; el Ayuntamiento líder actúa como beneficiario.";
+  const label = document.getElementById("chat-gov-label");
+  if(label) label.textContent = mode==="general" ? "modelo general" : "modelo excepcional (AUF-Ayto.)";
   renderBlocks();
   // reopen previously open blocks after re-render would require state tracking; keep simple: all closed on switch
 }
@@ -940,7 +1012,8 @@ function buildSearchIndex(){
   BLOCKS.forEach(b=>b.steps.forEach(s=>idx.push({group:b.title, num:b.num, kind:"block", paso:s.paso, text:[s.paso,s.responsable,s.agentes,s.evidencia,s.base,s.riesgo].join(" ")})));
   TRANSVERSAL.forEach((p,i)=>p.steps.forEach(s=>idx.push({group:p.title, num:i, kind:"trans", paso:s.paso, text:[s.paso,s.responsable,s.agentes,s.evidencia,s.base,s.riesgo].join(" ")})));
   GLOSARIO.forEach((g,i)=>idx.push({group:"Glosario", num:i, kind:"gloss", paso:g.term, text:[g.term,g.def].join(" ")}));
-  CUESTIONES.forEach((t,i)=>idx.push({group:"Cuestión pendiente", num:i, kind:"issue", paso:"Cuestión "+(i+1), text:t}));
+  CUESTIONES_CAU.forEach((t,i)=>idx.push({group:"Pregunta para el CAU", num:i, kind:"issue-cau", paso:"Pregunta al CAU "+(i+1), text:t}));
+  CUESTIONES_LOCAL.forEach((t,i)=>idx.push({group:"Pregunta para la Entidad Local", num:i, kind:"issue-local", paso:"Pregunta a la Entidad Local "+(i+1), text:t}));
   REFERENCIAS.forEach((r,i)=>idx.push({group:"Documentación de referencia", num:i, kind:"ref", paso:r.titulo, text:[r.titulo,r.tipo,r.fecha,r.resumen].join(" ")}));
   return idx;
 }
@@ -975,8 +1048,10 @@ function runSearch(q){
         head.scrollIntoView({behavior:"smooth", block:"center"});
       } else if(kind === "gloss"){
         flashScroll("gloss-"+num);
-      } else if(kind === "issue"){
-        flashScroll("issue-"+num);
+      } else if(kind === "issue-cau"){
+        flashScroll("issue-cau-"+num);
+      } else if(kind === "issue-local"){
+        flashScroll("issue-local-"+num);
       } else if(kind === "ref"){
         flashScroll("ref-"+num);
       }
@@ -1080,6 +1155,9 @@ const API_ENDPOINT = "";
 
 function buildContext(){
   const lines = [];
+  lines.push("=== MODELO DE GOBERNANZA ACTUALMENTE SELECCIONADO EN LA PÁGINA: " + (gov === "excepcional" ? "EXCEPCIONAL (AUF liderada por Ayuntamiento)" : "GENERAL (municipio o AUF con Unidad de Gestión propia)") + " ===");
+  lines.push("Responde siempre de forma coherente con este modelo salvo que la pregunta pida explícitamente comparar ambos modelos.");
+  lines.push("");
   lines.push("=== SECUENCIA CRONOLÓGICA — MUNICIPIO ÚNICO ===");
   CHRONO_MUNICIPIO.forEach((t,i)=>lines.push((i+1)+". "+t));
   lines.push("");
@@ -1091,7 +1169,7 @@ function buildContext(){
     lines.push("-- "+b.tag+": "+b.title+" --");
     b.steps.forEach(s=>{
       lines.push("Paso: "+s.paso);
-      lines.push("  Responsable: "+s.responsable+" | Agentes: "+s.agentes);
+      lines.push("  Responsable: "+swapGov(s.responsable,b.num,gov)+" | Agentes: "+swapGov(s.agentes,b.num,gov));
       lines.push("  Evidencia: "+s.evidencia+" | Plazo: "+s.plazo+" | Base documental: "+s.base);
       if(s.riesgo && s.riesgo !== "—") lines.push("  Riesgo/alerta: "+s.riesgo);
     });
@@ -1113,8 +1191,11 @@ function buildContext(){
   lines.push("=== GLOSARIO ===");
   GLOSARIO.forEach(g=>lines.push(g.term+(g.flag?" [NO DEFINIDO EN LA DOCUMENTACIÓN]":"")+": "+g.def));
   lines.push("");
-  lines.push("=== CUESTIONES PENDIENTES / NO RESUELTAS EN LA DOCUMENTACIÓN ===");
-  CUESTIONES.forEach((t,i)=>lines.push((i+1)+". "+t));
+  lines.push("=== PREGUNTAS PENDIENTES PARA TRASLADAR AL CAU (vacíos de la normativa/documentación, iguales para cualquier Entidad Local) ===");
+  CUESTIONES_CAU.forEach((t,i)=>lines.push((i+1)+". "+t));
+  lines.push("");
+  lines.push("=== PREGUNTAS PENDIENTES PARA LA ENTIDAD LOCAL (para saber en qué punto están y cómo se organizan internamente) ===");
+  CUESTIONES_LOCAL.forEach((t,i)=>lines.push((i+1)+". "+t));
   lines.push("");
   lines.push("=== DOCUMENTACIÓN DE REFERENCIA ADICIONAL (documentos publicados después o de consulta recurrente) ===");
   REFERENCIAS.forEach(r=>lines.push(r.titulo+" ("+r.tipo+", "+r.fecha+"): "+r.resumen));
@@ -1124,8 +1205,9 @@ function buildContext(){
   return lines.join("\n");
 }
 
-const SYSTEM_CONTEXT = buildContext();
-const SYSTEM_INSTRUCTIONS = "Eres un asistente que responde EXCLUSIVAMENTE con base en el contenido documentado a continuación sobre la ejecución de un PAI EDIL. No debes usar conocimiento externo ni suponer nada que no esté en este contenido. Si la pregunta no puede responderse con lo aportado, dilo expresamente en vez de inventar una respuesta, y sugiere consultarlo con el CAU (910 001 142 / soporte@soportesgffee.zendesk.com). Responde en español, de forma clara y operativa, citando el bloque, proceso o término relevante cuando aplique.\n\nFORMATO DE RESPUESTA: este chat no interpreta Markdown, así que NO uses asteriscos para negrita (**texto**), NO uses almohadillas para títulos (## Título), NO uses guiones ni asteriscos como viñetas de lista. Escribe en texto plano. Para dar énfasis, usa mayúsculas puntuales o dos puntos. Para listas, usa numeración simple con salto de línea (1. ... / 2. ...). Para separar apartados, usa una línea en blanco y, si hace falta un título de apartado, escríbelo seguido de dos puntos en su propia línea, sin símbolos delante.\n\nCONTENIDO DOCUMENTADO:\n" + SYSTEM_CONTEXT;
+function buildSystemInstructions(){
+  return "Eres un asistente que responde EXCLUSIVAMENTE con base en el contenido documentado a continuación sobre la ejecución de un PAI EDIL. No debes usar conocimiento externo ni suponer nada que no esté en este contenido. Si la pregunta no puede responderse con lo aportado, dilo expresamente en vez de inventar una respuesta, y sugiere consultarlo con el CAU (910 001 142 / soporte@soportesgffee.zendesk.com). Responde en español, de forma clara y operativa, citando el bloque, proceso o término relevante cuando aplique.\n\nFORMATO DE RESPUESTA: este chat no interpreta Markdown, así que NO uses asteriscos para negrita (**texto**), NO uses almohadillas para títulos (## Título), NO uses guiones ni asteriscos como viñetas de lista. Escribe en texto plano. Para dar énfasis, usa mayúsculas puntuales o dos puntos. Para listas, usa numeración simple con salto de línea (1. ... / 2. ...). Para separar apartados, usa una línea en blanco y, si hace falta un título de apartado, escríbelo seguido de dos puntos en su propia línea, sin símbolos delante.\n\nCONTENIDO DOCUMENTADO:\n" + buildContext();
+}
 
 let chatHistory = [];
 let chatBusy = false;
@@ -1201,7 +1283,7 @@ async function sendChat(){
       method: "POST",
       headers: { "Content-Type": "application/json", "X-Access-Key": getAccessKey() },
       body: JSON.stringify({
-        system: SYSTEM_INSTRUCTIONS,
+        system: buildSystemInstructions(),
         messages: chatHistory.slice(-16)
       })
     });
