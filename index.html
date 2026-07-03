@@ -682,7 +682,7 @@ function swapGov(text, blockNum, mode){
 const BLOCKS = [
 {num:0, title:"Nombramiento como Organismo Intermedio Ligero (OIL)", tag:"Bloque 0", steps:[
   {paso:"0.1 Firma del Acuerdo de Atribución de Funciones", responsable:"Alcalde/sa, Presidente/a, concejal/a o diputado/a delegado/a", agentes:"Dirección General de Fondos Europeos (Ministerio de Hacienda)", evidencia:"Acuerdo de Atribución de Funciones firmado", plazo:"Fase inicial, previa a operar como OIL", base:"I.2_Plan_de_capacitación / II.1_Sesión_Técnica_SGDU", riesgo:"Es el título habilitante: sin él no se puede iniciar ningún trámite posterior"},
-  {paso:"0.2 Cumplimentación y firma de la Descripción de Funciones y Procedimientos (DFyP)", responsable:"Responsable de la Unidad de Gestión", agentes:"Unidad de Gestión", evidencia:"DFyP firmada; incluye datos de la EL, organigrama, RRHH, miembros CARF, asistencia técnica", plazo:"Junto al Acuerdo de Atribución de Funciones", base:"I.2 / II.1_Sesión_Técnica_SGDU", riesgo:"Documento base que define el reparto interno UG/UE. El campo \"miembros CARF\" no está definido en la documentación disponible — ver Cuestiones pendientes"},
+  {paso:"0.2 Cumplimentación y firma de la Descripción de Funciones y Procedimientos (DFyP)", responsable:"Responsable de la Unidad de Gestión", agentes:"Unidad de Gestión", evidencia:"DFyP firmada; incluye datos de la EL, organigrama, RRHH, miembros CARF, asistencia técnica", plazo:"Junto al Acuerdo de Atribución de Funciones", base:"I.2 / II.1_Sesión_Técnica_SGDU", riesgo:"Documento base que define el reparto interno UG/UE. El campo \"miembros CARF\" (Comité de Autoevaluación del Riesgo de Fraude, según fuente externa — ver glosario) no está definido en la documentación propia del proyecto; debe confirmarse su aplicabilidad y composición con el CAU — ver Cuestiones pendientes"},
   {paso:"0.3 Cumplimentación y firma del Manual de Procedimientos (MP)", responsable:"Responsable de la Unidad de Gestión", agentes:"Unidad de Gestión", evidencia:"MP firmado", plazo:"Junto a la DFyP", base:"I.2 / II.1_Sesión_Técnica_SGDU", riesgo:"—"},
   {paso:"0.4 Autoevaluación del Riesgo de Fraude", responsable:"Responsable de la Unidad de Gestión", agentes:"—", evidencia:"Excel de autoevaluación; se incorpora como Anexo I del MP", plazo:"Junto a la DFyP y el MP", base:"I.2 / II.1_Sesión_Técnica_SGDU", riesgo:"No requiere firma independiente, pero sí incorporación formal al MP"}
 ], notes:["El Organismo Intermedio ofrece plantillas modelo (DFyP y MP) y matriz de riesgo para agilizar este bloque."]},
@@ -822,7 +822,7 @@ const GLOSARIO = [
 {term:"UE / Unidad(es) Ejecutora(s)", def:"Unidad(es) del OIL que presentan solicitudes de financiación, ejecutan las operaciones y conservan la documentación justificativa."},
 {term:"DFyP", def:"Descripción de Funciones y Procedimientos — documento que recoge organigrama, RRHH, miembros CARF y asistencia técnica del OIL."},
 {term:"MP", def:"Manual de Procedimientos del OIL, firmado por el responsable de la Unidad de Gestión."},
-{term:"CARF", def:"Término citado como campo a rellenar en la DFyP (\"miembros CARF\"). No consta su definición ni desarrollo en ningún documento del proyecto.", flag:true},
+{term:"CARF", def:"Comité de Autoevaluación del Riesgo de Fraude: órgano interno encargado de evaluar periódicamente los riesgos de fraude y corrupción en la gestión y ejecución de los fondos, y de proponer y actualizar las medidas antifraude. Utiliza la herramienta de autoevaluación (Excel) del paso 0.4 y levanta actas de las evaluaciones realizadas. NO consta esta definición en la documentación propia de este proyecto — procede de Manuales de Procedimientos EDIL de otras Entidades Locales (fuente externa aportada por el usuario), coherente con el resto de lo documentado (paso 0.4 y campo \"miembros CARF\" de la DFyP). Debe confirmarse con el CAU que aplica igual a nuestro caso.", flag:true, flagLabel:"Fuente externa"},
 {term:"ALDEA", def:"Aplicación informática del Organismo Intermedio para tramitar solicitudes de financiación, listas de comprobación y DECA."},
 {term:"CAU", def:"Centro de Atención a Usuarios de la Secretaría General de Fondos Europeos: 910 001 142 / soporte@soportesgffee.zendesk.com."},
 {term:"CPSO", def:"Criterios y Procedimientos de Selección de Operaciones del Programa Plurirregional de España."},
@@ -837,10 +837,11 @@ const GLOSARIO = [
 ];
 
 const CUESTIONES_CAU = [
-  "¿Qué debe entenderse por \"miembros CARF\", campo exigido en la DFyP? No está definido ni desarrollado en ningún documento del proyecto.",
+  "¿Es aplicable a nuestro caso la definición de CARF (Comité de Autoevaluación del Riesgo de Fraude) que emplean los Manuales de Procedimientos EDIL de otras Entidades Locales? ¿Debe constituirse formalmente antes o junto con la firma de la DFyP, y quién debe formar parte de él? No consta esta definición en la documentación propia del proyecto.",
   "¿Cuál es el orden correcto entre la firma de la DFyP/Manual de Procedimientos por el responsable de la Unidad de Gestión (Bloque 0) y la \"Constitución de la Unidad de Gestión\" (paso 1.1, Bloque 1)? ¿Existe un modelo o plantilla oficial para ese acto de constitución, como sí lo hay para la DFyP y el MP?",
   "¿Debe configurarse la asistencia técnica externa como una operación propia (con su propia convocatoria y Solicitud de Financiación) antes de iniciar su licitación/contratación, o puede contratarse como gasto ordinario municipal y vincularse después a una operación del PAI? No consta en la documentación disponible.",
-  "¿Cuáles son las nueve áreas urbanas funcionales designadas para el modelo excepcional de gobernanza, y dónde consta oficialmente esa designación (Resolución, Acuerdo de Atribución de Funciones u otro documento)? La SGDU confirmó en sesión técnica que se trata de una lista cerrada de nueve beneficiarios, pero no consta el listado ni su publicación oficial en la documentación disponible."
+  "¿Cuáles son las nueve áreas urbanas funcionales designadas para el modelo excepcional de gobernanza, y dónde consta oficialmente esa designación (Resolución, Acuerdo de Atribución de Funciones u otro documento)? La SGDU confirmó en sesión técnica que se trata de una lista cerrada de nueve beneficiarios, pero no consta el listado ni su publicación oficial en la documentación disponible.",
+  "Cuando una operación se ejecuta mediante varios contratos: ¿debe abrirse una única Carpeta de Gasto por operación (agregando todos los contratos) o una carpeta independiente por cada contrato? No consta en la documentación disponible."
 ];
 
 const CUESTIONES_LOCAL = [
@@ -960,7 +961,7 @@ function renderChrono(){
 function renderGlosario(){
   const c = document.getElementById("glosario-container");
   c.innerHTML = GLOSARIO.map((g,i)=>
-    '<div class="gloss-row" id="gloss-'+i+'"><div class="gloss-term">'+g.term+(g.flag?' <span class="flag">No definido</span>':'')+'</div><div class="gloss-def">'+g.def+'</div></div>'
+    '<div class="gloss-row" id="gloss-'+i+'"><div class="gloss-term">'+g.term+(g.flag?' <span class="flag">'+(g.flagLabel||"No definido")+'</span>':'')+'</div><div class="gloss-def">'+g.def+'</div></div>'
   ).join("");
 }
 
